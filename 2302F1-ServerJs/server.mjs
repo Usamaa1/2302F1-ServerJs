@@ -1,5 +1,6 @@
 import express from 'express'
 import path from 'path'
+import { UserRoute } from './routes/UserRoutes.mjs'
 
 const app = express()
 const port = 3000
@@ -9,7 +10,7 @@ app.use(express.json())
 
 let __dirname = path.resolve();
 
-console.log(__dirname)
+// console.log(__dirname)
 
 // \downloads\first/hello\1.jpg
 
@@ -75,25 +76,29 @@ app.get('/', (req, res) => {
 // })
 
 
-app.post('/toys',(req,res)=>{
+// app.post('/toys',(req,res)=>{
 
 
-    // let toyName = req.body.toyName;
-    // let toyYear = req.body.toyYear;
+//     // let toyName = req.body.toyName;
+//     // let toyYear = req.body.toyYear;
 
-    let {toyName, toyYear,toyManufacturer, toyType} = req.body;
+//     let {toyName, toyYear,toyManufacturer, toyType} = req.body;
 
-    res.send({
-        data: {
-            toyName, toyYear,toyManufacturer, toyType
-        },
-        message: "Body Request successfull!"
-    })
+//     res.send({
+//         data: {
+//             toyName, toyYear,toyManufacturer, toyType
+//         },
+//         message: "Body Request successfull!"
+//     })
+
+// })
 
 
 
 
-})
+app.use('/api/v1',UserRoute)
+
+
 
 
 
