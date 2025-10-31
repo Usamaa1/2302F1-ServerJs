@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { db } from "../connection/connection.mjs";
 
 
@@ -24,24 +25,19 @@ export const addProducts = async (req, res) => {
 }
 
 
-
-
-
-
 export const getProducts = async (req, res) => {
 
     try {
 
         const products = await db.collection('products').find().toArray();
 
-        if(products)
-            {
-                res.send(products);
-            }
-            else{
-                
-                res.send({message: "Data not found!"})
-            }
+        if (products) {
+            res.send(products);
+        }
+        else {
+
+            res.send({ message: "Data not found!" })
+        }
 
 
 
@@ -55,4 +51,31 @@ export const getProducts = async (req, res) => {
 }
 
 
+
+export const updateProuduct = async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        console.log(id);
+
+        const product = await db.collection('products').findOne({ _id: ObjectId(id) }).toArray();
+
+        // const {prodName, prodPrice, prodDesc} = product;
+        console.log("Product: ",product)
+
+        res.send(product)
+
+
+
+
+
+    } catch (error) {
+        res.send(error)
+    }
+
+
+
+}
 
